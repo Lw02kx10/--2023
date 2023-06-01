@@ -1,9 +1,9 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+	<view class="page">
+		<view class="guid">
+			<image class="guider"></image>
 		</view>
+		<view class="enter" @click="enter">进入</view>
 	</view>
 </template>
 
@@ -11,42 +11,44 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+
 			}
 		},
 		onLoad() {
 
 		},
 		methods: {
-
+			enter(){
+				uni.navigateTo({
+					url:"/pages/image_1/image_1"
+				})
+			}
 		}
 	}
 </script>
 
 <style>
-	.content {
+	.page {
+		height: 1500rpx;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		background-color: #C8B586;
 	}
 
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
+	.guid {
+		width: 75%;
+		height: 20%;
+		position: absolute;
+		top: 25%;
+		background-color: #5B5853;
 	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
+	.enter{
+		width: 45%;
+		height: 8%;
+		position: absolute;
+		bottom: 20%;
+		border-radius: 30rpx;
+		background-color: #87725A;
 	}
 </style>
