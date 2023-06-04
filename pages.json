@@ -24,6 +24,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/image_3/image_3",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -2,12 +2,12 @@
 	<view class="page animate__animated animate__fadeIn">
 		<view class="upperSpace">
 			<view class="selections">
-				<text>性别</text>
+				<text class="title">性别：</text>
 				<view class="gender">
 					<view></view>
 					<view></view>
 				</view>
-				<text>服装</text>
+				<text class="title">服装：</text>
 				<view class="cloth">
 					<view></view>
 					<view></view>
@@ -16,7 +16,7 @@
 					<view></view>
 					<view></view>
 				</view>
-				<text>发型</text>
+				<text class="title">发型：</text>
 				<view class="hair">
 					<view></view>
 					<view></view>
@@ -29,7 +29,7 @@
 			<view class="image">人物形象</view>
 		</view>
 		<view class="lowerSpace">
-			<view class="enter">这就是我</view>
+			<view class="enter" @click="gotoImage_1">这就是我</view>
 		</view>
 	</view>
 </template>
@@ -42,7 +42,9 @@
 			}
 		},
 		methods: {
-
+			gotoImage_1() {
+				uni.navigateBack();
+			}
 		}
 	}
 </script>
@@ -52,7 +54,8 @@
 		height: 1500rpx;
 		display: flex;
 		justify-content: space-around;
-		background-color: #C8B586;
+		background: linear-gradient(0deg, rgba(35, 26, 137, 0.2), rgba(35, 26, 137, 0.2)), url("../../static/image/mirror_back.png");
+		background-size: 100% 100%;
 	}
 
 	.upperSpace {
@@ -71,6 +74,14 @@
 
 	.selections text {
 		line-height: 3em;
+	}
+
+	.title {
+		font-family: 'Inter';
+		font-weight: 700;
+		font-size: 32px;
+		line-height: 39px;
+		color: #FDF5D9;
 	}
 
 	.gender {
@@ -124,8 +135,16 @@
 		width: 45%;
 		height: 8%;
 		position: absolute;
-		bottom: 20%;
+		bottom: 15%;
+		right: 10%;
 		border-radius: 30rpx;
-		background-color: #87725A;
+		background: url("../../static/image/index_2.png");
+		background-size: 100% 100%;
+		font-family: 'Inter';
+		font-weight: 900;
+		font-size: 32px;
+		line-height: 60px;
+		text-align: center;
+		color: #FDF5D9;
 	}
 </style>

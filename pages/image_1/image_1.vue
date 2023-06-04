@@ -2,13 +2,14 @@
 	<view class="page animate__animated animate__fadeIn">
 		<view class="text">文案</view>
 		<view class="content">
-			<view class="detail">
-				<view>姓名：</view>
-				<view>属性：</view>
-				<view>职业：</view>
-				<view>毕业学院：</view>
-			</view>
-			<view class="image" @click="goToMirror"></view>
+			<view id="name">姓名：</view>
+			<view id="attribute">属性：</view>
+			<view id="career">职业：</view>
+			<view id="school">毕业学院：</view>
+			<view class="image" @click="goToMirror" hover-class="hoverButton" hover-stay-time="100"
+				hover-start-time="0"></view>
+			<view class="next" v-if="showNext" @click="gotoImage_3" hover-class="hoverButton" hover-stay-time="100"
+				hover-start-time="0">下一页</view>
 		</view>
 		<view class="tail">独白</view>
 	</view>
@@ -18,13 +19,19 @@
 	export default {
 		data() {
 			return {
-				
+				showNext: 0
 			}
 		},
 		methods: {
-			goToMirror(){
+			goToMirror() {
 				uni.navigateTo({
-					url:"/pages/image_2/image_2"
+					url: "/pages/image_2/image_2"
+				})
+				this.showNext = 1
+			},
+			gotoImage_3() {
+				uni.navigateTo({
+					url: "/pages/image_3/image_3"
 				})
 			}
 		}
@@ -32,53 +39,115 @@
 </script>
 
 <style>
-	.page{
+	.page {
 		height: 1500rpx;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		background-color: #C8B586;
+		background: linear-gradient(0deg, rgba(154, 182, 198, 0.3), rgba(154, 182, 198, 0.3)), url("../../static/image/image_1.jpg");
+		background-size: 100% 100%;
 	}
-	.text{
+
+	.text {
 		width: 75%;
 		height: 15%;
+		top: 6%;
 		position: absolute;
-		top: 15%;
-		background-color: #87725A;
+		background: #87725A;
+		border-radius: 20px;
 	}
-	.content{
-		width: 80%;
-		height: 30%;
+
+	.content {
+		width: 100%;
+		height: 50%;
 		display: flex;
 		flex-direction: column;
 		position: absolute;
-		bottom: 30%;
-		background-color: #5B5853;
+		bottom: 25%;
+		background: url("../../static/image/volume.png");
+		background-size: 100% 100%;
 	}
-	.detail{
-		height: 50%;
-		color: white;
-		display: flex;
-		flex-wrap: wrap;
-	}
-	.detail view{
-		width: 50%;
-		height: 50%;
-		text-align: center;
-	}
-	.image{
-		width: 25%;
-		height: 40%;
+
+	#name {
+		left: 16%;
+		top: 25%;
 		position: absolute;
-		left: 10%;
-		bottom: 10%;
-		background-color: #FDF5D9;
+		font-family: 'Inter';
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 24px;
+		color: #514639;
 	}
-	.tail{
+
+	#attribute {
+		left: 55%;
+		top: 25%;
+		position: absolute;
+		font-family: 'Inter';
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 24px;
+		color: #514639;
+	}
+
+	#career {
+		left: 16%;
+		top: 45%;
+		position: absolute;
+		font-family: 'Inter';
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 24px;
+		color: #514639;
+	}
+
+	#school {
+		left: 16%;
+		top: 65%;
+		position: absolute;
+		font-family: 'Inter';
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 24px;
+		color: #514639;
+	}
+
+	.image {
+		width: 20%;
+		height: 20%;
+		position: absolute;
+		right: 10%;
+		bottom: 25%;
+		background:url("../../static/face/f1.png");
+		background-size: 100% 100%;
+	}
+
+	.next {
+		width: 24%;
+		height: 10%;
+		position: absolute;
+		right: 7%;
+		bottom: 11%;
+		background: url("../../static/image/index_2.png");
+		background-size: 100% 100%;
+		font-family: 'Inter';
+		font-style: italic;
+		font-weight: 900;
+		font-size: 20px;
+		line-height: 38px;
+		text-align: center;
+		color: #FDF5D9;
+	}
+
+	.tail {
 		width: 100%;
 		height: 20%;
-		background-color: #FDF5D9;
 		position: absolute;
 		bottom: 0;
+	}
+
+	.hoverButton {
+		opacity: 0.9;
+		transform: scale(0.95, 0.95);
 	}
 </style>
