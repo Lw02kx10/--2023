@@ -18,6 +18,7 @@
 
 		},
 		methods: {
+<<<<<<< Updated upstream
 			enter() {
 				this.activeclass = "page puff-out-center"
 				setTimeout(() => {
@@ -27,6 +28,9 @@
 					this.activeclass = "page"
 				}, 2000)
 			}
+=======
+            
+>>>>>>> Stashed changes
 		}
 	}
 </script>

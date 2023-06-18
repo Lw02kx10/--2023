@@ -10,8 +10,7 @@
 				}
 			}
 		}
-<<<<<<< HEAD
-	    ,{
+       ,{
             "path" : "pages/scene7/scene7",
 			"style": {
 				"navigationBarTitleText": "",
@@ -21,7 +20,7 @@
 				}
 			}
             
-        },
+        }
 		,{
 		    "path" : "pages/scene8/scene8",
 			"style": {
@@ -33,7 +32,6 @@
 			}
 		    
 		}
-=======
         ,{
             "path" : "pages/image_1/image_1",
             "style" :                                                                                    
@@ -61,7 +59,33 @@
             }
             
         }
->>>>>>> b22126b7ec5cbabc0811dd141fd3b34057d4da7e
+		,{
+		    "path" : "pages/SceneThree/SceneThree",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/SceneFive/SceneFive",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/SceneNine/SceneNine",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
