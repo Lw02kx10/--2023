@@ -157,6 +157,17 @@
 				if(this.curStatus < 4) {
 					let ID = this.judge(this.control2[idx])
 					ID++
+					//判断该图片是否已选
+					for(let i = 0; i < 4; i++) {
+						if(this.control1[i][ID])  {
+							//点击动画
+							this.ani[idx] = 'animate__animated animate__headShake';
+								    setTimeout(() => {
+								    this.ani[idx] = ''
+								}, 1000); // 1秒后移除动画类名
+								return
+							}
+						}
 					this.control1[this.curStatus][0] = 0
 					this.control1[this.curStatus][ID] = 1
 					this.curStatus++
