@@ -14,13 +14,10 @@
 
 <style>
 	/*每个页面公共css */
+@import'components/animate.min.css';
 uni-page-body, html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
 }
 </style>
-<style>
-@import'components/animate.min.css';
-</style>
-

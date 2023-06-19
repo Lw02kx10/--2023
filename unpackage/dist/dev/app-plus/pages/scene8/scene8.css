@@ -1,0 +1,83 @@
+unipage-body[data-v-0fa03097],
+html[data-v-0fa03097],
+body[data-v-0fa03097] {
+  background-color: #c8b586;
+}
+.root[data-v-0fa03097] {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.root .info-bar[data-v-0fa03097] {
+  margin-top: 2.34375rem;
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  justify-content: space-between;
+}
+.root .info-bar .basic-info[data-v-0fa03097] {
+  background-color: #5b5853;
+  height: 17.5%;
+  width: 18.75rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+.root .info-bar .basic-info .head-box[data-v-0fa03097] {
+  width: 3.4375rem;
+  height: 80%;
+  position: relative;
+  top: 10%;
+  margin-right: 0.625rem;
+  background-color: #fdf5d9;
+}
+.root .info-bar .skill-info-one[data-v-0fa03097] {
+  background-color: #5b5853;
+  height: 17.5%;
+  width: 18.75rem;
+  margin: 0 auto;
+}
+.root .info-bar .skill-info-two[data-v-0fa03097] {
+  background-color: #5b5853;
+  height: 17.5%;
+  width: 18.75rem;
+  margin: 0 auto;
+}
+.root .info-bar .talent-info[data-v-0fa03097] {
+  background-color: #5b5853;
+  height: 17.5%;
+  width: 18.75rem;
+  margin: 0 auto;
+}
+.root .info-bar .enchant-info[data-v-0fa03097] {
+  background-color: #5b5853;
+  height: 17.5%;
+  width: 18.75rem;
+  margin: 0 auto;
+}
+.root .bottom-bar[data-v-0fa03097] {
+  display: flex;
+  width: 18.75rem;
+  margin: 0 auto;
+  margin-top: 1.25rem;
+  margin-bottom: 0.9375rem;
+  justify-content: space-around;
+}
+.root .bottom-bar .save-png[data-v-0fa03097] {
+  height: 2.5rem;
+  width: 7.1875rem;
+  background-color: #87725a;
+  border-radius: 0.78125rem;
+  align-self: center;
+  margin-bottom: 1.25rem;
+  color: white;
+  line-height: 2.5rem;
+  text-align: center;
+  font-size: 1rem;
+}
+.root .bottom-bar .ready-btn[data-v-0fa03097] {
+  width: 7.1875rem;
+  height: 7.1875rem;
+  background-color: #fdf5d9;
+  border-radius: 100%;
+}
