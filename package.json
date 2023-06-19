@@ -1,1 +1,9 @@
-{}
+{
+  "devDependencies": {
+    "postcss-pxtorem": "^5.1.1"
+  },
+  "dependencies": {
+    "html2canvas": "^1.4.1",
+    "lib-flexible": "^0.3.2"
+  }
+}
