@@ -2,10 +2,18 @@
 	<view class="page animate__animated animate__fadeIn">
 		<view class="text">文案</view>
 		<view class="content">
-			<view id="name">姓名：</view>
-			<view id="attribute">属性：</view>
-			<view id="career">职业：</view>
-			<view id="school">毕业学院：</view>
+			<view id="name">
+				<view class="title">姓名:</view> <textarea class="textInput"></textarea>
+			</view>
+			<view id="attribute">
+				<view class="title">属性:</view> <textarea class="textInput"></textarea>
+			</view>
+			<view id="career">
+				<view class="title">职业:</view> <textarea class="textInput"></textarea>
+			</view>
+			<view id="school">
+				<view class="title">学院:</view> <textarea class="textInput"></textarea>
+			</view>
 			<view class="image" @click="goToMirror" hover-class="hoverButton" hover-stay-time="100"
 				hover-start-time="0"></view>
 			<view class="next" v-if="showNext" @click="gotoImage_3" hover-class="hoverButton" hover-stay-time="100"
@@ -19,19 +27,23 @@
 	export default {
 		data() {
 			return {
-				showNext: 0
+				showNext: 0,
+				name: "",
+				attribute: "",
+				career: "",
+				school: ""
 			}
 		},
 		methods: {
 			goToMirror() {
 				uni.navigateTo({
-					url: "/pages/image_2/image_2"
+					url: "/pages/scene2_2/scene2_2"
 				})
 				this.showNext = 1
 			},
 			gotoImage_3() {
 				uni.navigateTo({
-					url: "/pages/image_3/image_3"
+					url: "/pages/SceneThree/SceneThree"
 				})
 			}
 		}
@@ -69,6 +81,7 @@
 	}
 
 	#name {
+		display: flex;
 		left: 16%;
 		top: 25%;
 		position: absolute;
@@ -80,6 +93,7 @@
 	}
 
 	#attribute {
+		display: flex;
 		left: 55%;
 		top: 25%;
 		position: absolute;
@@ -91,6 +105,7 @@
 	}
 
 	#career {
+		display: flex;
 		left: 16%;
 		top: 45%;
 		position: absolute;
@@ -102,6 +117,7 @@
 	}
 
 	#school {
+		display: flex;
 		left: 16%;
 		top: 65%;
 		position: absolute;
@@ -111,14 +127,23 @@
 		line-height: 24px;
 		color: #514639;
 	}
+	.textInput{
+		position: absolute;
+		left: 100%;
+		font-family: 'Inter';
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 24px;
+		color: #514639;
+	}
 
 	.image {
 		width: 20%;
-		height: 20%;
+		height: 25%;
 		position: absolute;
 		right: 10%;
 		bottom: 25%;
-		background:url("../../static/face/f1.png");
+		background: url("../../static/face/f1.png");
 		background-size: 100% 100%;
 	}
 

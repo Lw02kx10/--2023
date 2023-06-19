@@ -1,6 +1,13 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/scene6/scene6",
 			"style": {
 				"navigationBarTitleText": "",
@@ -9,9 +16,8 @@
 					"titleView": false
 				}
 			}
-		}
-       ,{
-            "path" : "pages/scene7/scene7",
+		}, {
+			"path": "pages/scene7/scene7",
 			"style": {
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom",
@@ -19,10 +25,9 @@
 					"titleView": false
 				}
 			}
-            
-        }
-		,{
-		    "path" : "pages/scene8/scene8",
+
+		}, {
+			"path": "pages/scene8/scene8",
 			"style": {
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom",
@@ -30,63 +35,44 @@
 					"titleView": false
 				}
 			}
-		    
+
+		}, {
+			"path": "pages/scene2_1/scene2_1",
+			"style": {
+				"navigationBarTitleText": "scene2_1",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/scene2_2/scene2_2",
+			"style": {
+				"navigationBarTitleText": "scene2_2",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/SceneThree/SceneThree",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/SceneFive/SceneFive",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/SceneNine/SceneNine",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
 		}
-        ,{
-            "path" : "pages/image_1/image_1",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "image_1",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/image_2/image_2",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/image_3/image_3",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-		,{
-		    "path" : "pages/SceneThree/SceneThree",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "",
-		        "enablePullDownRefresh": false
-		    }
-		    
-		}
-		,{
-		    "path" : "pages/SceneFive/SceneFive",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "",
-		        "enablePullDownRefresh": false
-		    }
-		    
-		}
-		,{
-		    "path" : "pages/SceneNine/SceneNine",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "",
-		        "enablePullDownRefresh": false
-		    }
-		    
-		}
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

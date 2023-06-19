@@ -18,19 +18,15 @@
 
 		},
 		methods: {
-<<<<<<< Updated upstream
 			enter() {
 				this.activeclass = "page puff-out-center"
 				setTimeout(() => {
 					uni.navigateTo({
-						url: "/pages/image_1/image_1"
+						url: "/pages/scene2_1/scene2_1"
 					})
 					this.activeclass = "page"
 				}, 2000)
 			}
-=======
-            
->>>>>>> Stashed changes
 		}
 	}
 </script>
