@@ -1,5 +1,5 @@
 <template>
-	<view class="wrapper">
+	<view class="wrapper animate__animated animate__fadeIn" @click="next()">
 		<!-- 第一部分 -->
 		<div class="one item">
 			<div class="person_box"></div>
@@ -25,7 +25,11 @@
 			}
 		},
 		methods: {
-			
+			next () {
+				uni.navigateTo({
+					url:"/pages/scene6/scene6"
+				})
+			}
 		}
 	}
 </script>

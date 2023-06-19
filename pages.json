@@ -58,6 +58,13 @@
 			}
 
 		}, {
+			"path": "pages/SceneThree_2/SceneThree_2",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		
+		}, {
 			"path": "pages/SceneFive/SceneFive",
 			"style": {
 				"navigationBarTitleText": "",

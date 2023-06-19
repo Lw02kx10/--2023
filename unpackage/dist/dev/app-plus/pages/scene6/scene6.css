@@ -1,0 +1,105 @@
+.unipage-body[data-v-46e353ee],
+html[data-v-46e353ee],
+body[data-v-46e353ee] {
+  background-color: #c8b586;
+}
+.root[data-v-46e353ee] {
+  height: 100%;
+  background-color: #c8b586;
+}
+.root .top-part[data-v-46e353ee] {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 2.34375rem;
+}
+.root .top-part .top-left[data-v-46e353ee] {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2.8125rem;
+}
+.root .top-part .top-left .forge-furnace[data-v-46e353ee] {
+  height: 11.25rem;
+  width: 6.79688rem;
+  background-color: #87725a;
+  font-size: 20px;
+}
+.root .top-part .top-left .text-content[data-v-46e353ee] {
+  background-color: #5b5853;
+  height: 2.34375rem;
+  margin-top: 1.5625rem;
+  text-align: center;
+  line-height: 2.34375rem;
+  color: white;
+  font-size: 1rem;
+}
+.root .top-part .top-right[data-v-46e353ee] {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2.8125rem;
+}
+.root .top-part .top-right .virtual-box[data-v-46e353ee] {
+  background-color: #c8b586;
+  height: 1.5625rem;
+}
+.root .top-part .top-right .boss-box[data-v-46e353ee] {
+  background-color: #87725a;
+  width: 8.48438rem;
+  height: 16.25rem;
+}
+.root .bottom-part[data-v-46e353ee] {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.9375rem;
+  justify-content: space-between;
+}
+.root .bottom-part .bottom-left[data-v-46e353ee] {
+  margin-left: 3.4375rem;
+}
+.root .bottom-part .bottom-left .weapon-box[data-v-46e353ee] {
+  background-color: #87725a;
+  width: 5.57813rem;
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: relative;
+}
+.root .bottom-part .bottom-left .weapon-box .enchanted-slot[data-v-46e353ee] {
+  width: 3.125rem;
+  height: 3.125rem;
+  background-color: #5b5853;
+}
+.root .bottom-part .bottom-left .weapon-box[data-v-46e353ee] :nth-child(1) {
+  position: absolute;
+  right: 4.375rem;
+}
+.root .bottom-part .bottom-left .weapon-box[data-v-46e353ee] :nth-child(2) {
+  position: absolute;
+  top: 1.71875rem;
+  right: 4.375rem;
+}
+.root .bottom-part .bottom-left .weapon-box[data-v-46e353ee] :nth-child(3) {
+  position: absolute;
+  bottom: 1.71875rem;
+  right: 4.375rem;
+}
+.root .bottom-part .bottom-right[data-v-46e353ee] {
+  margin-right: 3.4375rem;
+}
+.root .bottom-part .bottom-right .bottom-forge[data-v-46e353ee] {
+  width: 6.875rem;
+  height: 10.625rem;
+  background-color: #5b5853;
+  margin-top: 2.5rem;
+  position: relative;
+}
+.root .bottom-part .bottom-right .bottom-forge[data-v-46e353ee] :first-child {
+  width: 5.625rem;
+  height: 3.125rem;
+  background-color: #87725a;
+  border-radius: 0.78125rem;
+  position: absolute;
+  left: 50%;
+  translate: -50% -2.03125rem;
+}

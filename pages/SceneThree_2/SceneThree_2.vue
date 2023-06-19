@@ -121,7 +121,7 @@
 		methods: {
 			NextPage () {
 					uni.navigateTo({
-						url: "/pages/SceneThree_2/SceneThree_2"
+						url: "/pages/SceneFive/SceneFive"
 				})
 			},
 			//换一组
@@ -266,19 +266,19 @@
 	}
 	.no_one {
 		/* background: url('/static/scene3_fight/Rectangle 8.png') no-repeat center center; */
-		background: $fight1 no-repeat center center;
+		background: $life1 no-repeat center center;
 	}
 	.no_two {
 		// background: url('/static/scene3_fight/Rectangle 9.png') no-repeat center center;
-		background: $fight2 no-repeat center center;
+		background: $life2 no-repeat center center;
 	}
 	.no_three {
 		// background: url('/static/scene3_fight/Rectangle 10.png') no-repeat center center;
-		background: $fight3 no-repeat center center;
+		background: $life3 no-repeat center center;
 	}
 	.no_four {
 		// background: url('/static/scene3_fight/Rectangle 11.png') no-repeat center center;
-		background: $fight4 no-repeat center center;
+		background: $life4 no-repeat center center;
 	}
 	/*第三部分*/
 	.page_btn {
@@ -304,16 +304,16 @@
 		min-height: 100%;
 	}
 	.num_1 {
-		background: $fight5 no-repeat center center;
+		background: $life5 no-repeat center center;
 	}
 	.num_2 {
-		background: $fight6 no-repeat center center;
+		background: $life6 no-repeat center center;
 	}
 	.num_3 {
-		background: $fight7 no-repeat center center;
+		background: $life7 no-repeat center center;
 	}
 	.num_4 {
-		background: $fight8 no-repeat center center;
+		background: $life8 no-repeat center center;
 	}
 	.change_btn {
 		width: 144px;

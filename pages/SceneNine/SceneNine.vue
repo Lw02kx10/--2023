@@ -6,7 +6,8 @@
 		</div>
 		<!--第二部分-->
 		<div class="two item">
-			<button class="btn_box">咦！怎么回事</button>
+			<button class="btn_box" hover-class="hoverButton" hover-stay-time="100"
+				hover-start-time="0" @click="changeSet()">咦！怎么回事</button>
 		</div>
 	</view>
 </template>
@@ -74,5 +75,9 @@
 		font-weight: 700;
 		font-size: 25px;
 		line-height: 113px;
+	}
+	.hoverButton {
+		opacity: 0.9;
+		transform: scale(0.95, 0.95);
 	}
 </style>

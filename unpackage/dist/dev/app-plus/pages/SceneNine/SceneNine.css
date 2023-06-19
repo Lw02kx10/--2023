@@ -1,0 +1,80 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/*自定义*/
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/*第一层*/
+.wrapper {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(2, 70% 30%);
+  height: 100%;
+  background: url("../../static/SceneNine/pettynancy_Scene_design_medieval_interior_fantasy-colored_trees_6631ca1d-8892-4f9b-b9b5-53458ab9f0fa 2.png") no-repeat center center;
+  background-size: 100% 100%;
+  width: 100%;
+  min-height: 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 0;
+}
+.one {
+  /*background: #f5ffff;*/
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.two {
+  /* background: #fffff5; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.item {
+  text-align: center;
+  font-size: 200%;
+}
+
+/*第一部分*/
+.person_box {
+  width: 611px;
+  height: 511px;
+  background: url("../../static/SceneNine/微信图片_20230603225708 1.png") no-repeat center center;
+}
+
+/*第二部分*/
+.btn_box {
+  width: 303px;
+  height: 113px;
+  background: url("../../static/SceneNine/怎么回事键.png") no-repeat center center;
+  border-radius: 15px;
+  color: #fff;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 113px;
+}
+.hoverButton {
+  opacity: 0.9;
+  transform: scale(0.95, 0.95);
+}
