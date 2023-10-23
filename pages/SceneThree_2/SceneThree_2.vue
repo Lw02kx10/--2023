@@ -2,7 +2,17 @@
 	<view class="wrapper animate__animated animate__fadeIn">
 		<!--第一部分-->
 		<div class="one item">
-			<div class="text_box">{{ detail }}</div>
+			<div class="text_box">
+				<div class="first-line">
+					<text>请在以下随机选择4个生活技巧吧！</text>
+				</div>
+				<div class="second-line">
+					<text>我们将在最后为您揭晓它们的具体内容</text>
+				</div>
+				<div class="third-line">
+					<text>选择自己喜欢的小巫师图片 ٩(๑´3｀๑)۶</text>
+				</div>
+			</div>
 		</div>
 		<!--第二部分-->
 		<div class="two item">
@@ -20,7 +30,7 @@
 		<div class="three item">
 			<div class="buttom_wrapper">
 				<button class="page_btn" @click="NextPage()" hover-class="hoverButton" hover-stay-time="100"
-				hover-start-time="0">下一页</button>
+				hover-start-time="0">{{ isAnimationDone ? "下一页" : "跳过动画" }}</button>
 				<div class="select_box">
 					<div class="select_item" :class="getP0, ani[0]" @click="select(0)" @longpress= "showText(0)"></div>
 					<div class="select_item" :class="getP1, ani[1]" @click="select(1)" @longpress= "showText(1)"></div>
@@ -30,6 +40,22 @@
 				hover-start-time="0" @click="changeSet()">换一组</button>
 			</div>
 		</div>
+		<view class="mask" v-if="showDialog"></view>
+		<view class="dialog-wrapper" v-if="showDialog">
+			<view class="dialog">
+				<text>选四个技巧再走啊！Ծ‸Ծ</text>
+			</view>
+			<view class="bottom-wrapper">
+				<view class="left-rev" hover-class="hoverButton" hover-stay-time="100"
+				hover-start-time="0" @click="closeDialog()">
+					<text>同意 (o´ω`o)و</text>
+				</view>
+				<view class="right-rev" hover-class="hoverButton" hover-stay-time="100"
+				hover-start-time="0" @click="closeDialog()">
+					<text>勉强同意 (╯▽╰)</text>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -39,20 +65,22 @@
 			return {
 				curStatus: 1,
 				control1: [
-					[1,0,0,0,0],
-				    [1,0,0,0,0],
-					[1,0,0,0,0],
-					[1,0,0,0,0]],
+					[1,0,0,0,0,0,0,0,0,0],
+				    [1,0,0,0,0,0,0,0,0,0],
+					[1,0,0,0,0,0,0,0,0,0],
+					[1,0,0,0,0,0,0,0,0,0]],
 				control2: [
-					[1,0,0,0],
-					[0,1,0,0],
-				    [0,0,1,0]],
-				numbers:[0,1,2,3],
+					[1,0,0,0,0,0,0,0,0],
+					[0,1,0,0,0,0,0,0,0],
+				    [0,0,1,0,0,0,0,0,0]],
+				numbers:[0,1,2,3,4,5,6,7,8],
 				curStatus: 0,
 				text: ['1','2','3','4'],
-				detail: '',
+				detail: '待放文案',
 				ani: ['','',''],
 				anim: ['','','',''],
+				showDialog: false,
+				isAnimationDone: false,
 				//canBeSelect: [1,1,1,1],
 			}
 		},
@@ -63,7 +91,12 @@
 					no_one: this.control1[0][1],
 					no_two: this.control1[0][2],
 					no_three: this.control1[0][3],
-					no_four: this.control1[0][4]
+					no_four: this.control1[0][4],
+					no_five: this.control1[0][5],
+					no_six: this.control1[0][6],
+					no_seven: this.control1[0][7],
+					no_eight: this.control1[0][8],
+					no_nine: this.control1[0][9],
 				}
 			},
 			getPic1 () {
@@ -72,7 +105,12 @@
 					no_one: this.control1[1][1],
 					no_two: this.control1[1][2],
 					no_three: this.control1[1][3],
-					no_four: this.control1[1][4]
+					no_four: this.control1[1][4],
+					no_five: this.control1[1][5],
+					no_six: this.control1[1][6],
+					no_seven: this.control1[1][7],
+					no_eight: this.control1[1][8],
+					no_nine: this.control1[1][9],
 				}
 			},
 			getPic2 () {
@@ -81,7 +119,12 @@
 					no_one: this.control1[2][1],
 					no_two: this.control1[2][2],
 					no_three: this.control1[2][3],
-					no_four: this.control1[2][4]
+					no_four: this.control1[2][4],
+					no_five: this.control1[2][5],
+					no_six: this.control1[2][6],
+					no_seven: this.control1[2][7],
+					no_eight: this.control1[2][8],
+					no_nine: this.control1[2][9],
 				}
 			},
 			getPic3 () {
@@ -90,7 +133,12 @@
 					no_one: this.control1[3][1],
 					no_two: this.control1[3][2],
 					no_three: this.control1[3][3],
-					no_four: this.control1[3][4]
+					no_four: this.control1[3][4],
+					no_five: this.control1[3][5],
+					no_six: this.control1[3][6],
+					no_seven: this.control1[3][7],
+					no_eight: this.control1[3][8],
+					no_nine: this.control1[3][9],
 				}
 			},
 			getP0 () {
@@ -98,7 +146,12 @@
 					num_1: this.control2[0][0],
 					num_2: this.control2[0][1],
 					num_3: this.control2[0][2],
-					num_4: this.control2[0][3]
+					num_4: this.control2[0][3],
+					num_5: this.control2[0][4],
+					num_6: this.control2[0][5],
+					num_7: this.control2[0][6],
+					num_8: this.control2[0][7],
+					num_9: this.control2[0][8],
 				}
 			},
 			getP1 () {
@@ -106,7 +159,12 @@
 					num_1: this.control2[1][0],
 					num_2: this.control2[1][1],
 					num_3: this.control2[1][2],
-					num_4: this.control2[1][3]
+					num_4: this.control2[1][3],
+					num_5: this.control2[1][4],
+					num_6: this.control2[1][5],
+					num_7: this.control2[1][6],
+					num_8: this.control2[1][7],
+					num_9: this.control2[1][8],
 				}
 			},
 			getP2 () {
@@ -114,14 +172,36 @@
 					num_1: this.control2[2][0],
 					num_2: this.control2[2][1],
 					num_3: this.control2[2][2],
-					num_4: this.control2[2][3]
+					num_4: this.control2[2][3],
+					num_5: this.control2[2][4],
+					num_6: this.control2[2][5],
+					num_7: this.control2[2][6],
+					num_8: this.control2[2][7],
+					num_9: this.control2[2][8],
 				}
 			},
 		},
 		methods: {
 			NextPage () {
-					uni.navigateTo({
-						url: "/pages/SceneFive/SceneFive"
+				if (!this.isAnimationDone) {
+					let first = document.querySelector('.first-line');
+					let second =document.querySelector('.second-line');
+					let third = document.querySelector('.third-line');
+					first.style.transition = 'none';
+					second.style.transition = 'none';
+					third.style.transition = 'none';
+					first.style.opacity = 1;
+					second.style.opacity = 1;
+					third.style.opacity = 1;
+					this.isAnimationDone = true;
+					return;
+				}
+				if (this.curStatus != 4) {
+					this.showDialog = true;
+					return;
+				}
+				uni.navigateTo({
+					url: "/pages/SceneFive/SceneFive"
 				})
 			},
 			//换一组
@@ -138,7 +218,7 @@
 				}
 				//将这三个图片位置置1
 				for(let i = 0; i < 3; i++) {
-					for(let j = 0; j < 4; j++) {
+					for(let j = 0; j < 9; j++) {
 						this.control2[i][j] = 0
 					}
 					this.control2[i][randomNumbers[i]] = 1 
@@ -169,10 +249,22 @@
 			},
 			//取消选择
 			del (idx) {
-				if(this.curStatus > 0 && idx == this.curStatus - 1) {
+				if(this.curStatus > 0) {
 					let ID = this.judge(this.control1[idx])
 					this.control1[idx][ID] = 0
 					this.control1[idx][0] = 1
+					if (idx != this.curStatus - 1) {
+						let tmp = idx;
+						while (tmp != this.curStatus - 1) {
+							tmp++;
+							let ID = this.judge(this.control1[tmp]);
+							this.control1[tmp][ID] = 0;
+							this.control1[tmp][0] = 1;
+							this.control1[idx][ID] = 1;
+							this.control1[idx][0] = 0;
+							idx++;
+						}
+					}
 					this.curStatus--
 					//点击动画
 					this.anim[idx] = 'animate__animated animate__headShake';
@@ -185,14 +277,66 @@
 			showText (idx) {
 				let ID = this.judge(this.control2[idx])
 				this.detail = this.text[ID]
+			},
+			closeDialog() {
+				let dialogWrapper = document.querySelector('.dialog-wrapper');
+				dialogWrapper.style.opacity = 0;
+				let mask = document.querySelector('.mask');
+				mask.style.opacity = 0;
+				setTimeout(() => {
+					this.showDialog = false;
+				}, 800);
+			}
+		},
+		mounted() {
+			let first = document.querySelector('.first-line');
+			let second =document.querySelector('.second-line');
+			let third = document.querySelector('.third-line');
+			setTimeout(() => {
+				first.style.opacity = 1;
+			}, 200);
+			setTimeout(() => {
+				second.style.opacity = 1;
+			}, 1400);
+			setTimeout(() => {
+				third.style.opacity = 1;
+			}, 2600);
+			setTimeout(() => {
+				this.isAnimationDone = true;
+			}, 3800);
+		},
+		watch: {
+			showDialog: {
+				handler(newval) {
+					if (newval) {
+						/*垂直居中文字*/
+						this.$nextTick(() => {
+							let dialogWrapper = document.querySelector('.dialog-wrapper');
+							let diaHei = dialogWrapper.clientHeight;
+							let dialogTop = document.querySelector('.dialog');
+							let dialogBotL = document.querySelector('.left-rev');
+							let dialogBotR = document.querySelector('.right-rev'); 
+							dialogTop.style.lineHeight = diaHei * 0.65 + 'px';
+							dialogBotL.style.lineHeight = diaHei * 0.35 + 'px';
+							dialogBotR.style.lineHeight = diaHei * 0.35 + 'px';
+							dialogWrapper.style.opacity = 1;
+							let mask = document.querySelector('.mask');
+							mask.style.opacity = 1;
+						})
+					}
+				}
 			}
 		}
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+	.unipage-body, html, body {
+		background-color: #c8b586;
+	}
 	/*第一层*/
     .wrapper {
+		overflow: hidden;
 		position: static;
 		display: grid;
 		grid-template-columns: 100%;
@@ -230,28 +374,42 @@
 	}
 	/*第一部分*/
 	.text_box {
-		width: 317px;
-		height: 132px;
-		border-radius: 20px;
+		width: 75%;
+		height: 200rpx;
+		top: 6%;
+		position: relative;
 		background: #87725A;
+		border-radius: 20px;
+		box-shadow: 1px 1px 10px rgb(75, 72, 70);
+		line-height: 200rpx;
+		text-align: center;
+		color: #fdf5d9;
+		font-size: 31rpx;
+		line-height: 49rpx;
+		.first-line {
+			margin-top: 20rpx;
+		}
+		.first-line, .second-line, .third-line {
+			opacity: 0;
+			transition: 1.7s all;
+		}
 	}
 	/*第二部分*/
 	.skill_box {
-		width: 382px;
-		height: 254px;
+		width: 95%;
+		height: 118%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		/* 背景部分 */
 		background: url('~@/static/SceneThree/IMG_3818 1.png') no-repeat center center;
-		background-size: cover;
-		min-height: 100%;
+		background-size: 100% 100%;
 	}
 	.skill_wrapper {
 		display: grid;
-		grid-gap: 20px;
-		grid-template-columns:repeat(2, 126px);
-		grid-template-rows: repeat(2,87px);
+		grid-gap: 20rpx;
+		grid-template-columns:repeat(2, 252rpx);
+		grid-template-rows: repeat(2,174rpx);
 	}
 	.skill_item {
 		background: #fff;
@@ -260,76 +418,130 @@
 		background-size: cover;
 		min-height: 100%;
 		position: relative;
+		left: 40rpx;
 	}
 	.defaultColor {
 		background: #fff;
 	}
 	.no_one {
-		/* background: url('/static/scene3_fight/Rectangle 8.png') no-repeat center center; */
-		background: $life1 no-repeat center center;
+		background: url('/static/life/life1.png') no-repeat center center;
+		//background: $life1 no-repeat center center;
+		background-size: cover;
 	}
 	.no_two {
-		// background: url('/static/scene3_fight/Rectangle 9.png') no-repeat center center;
-		background: $life2 no-repeat center center;
+		background: url('/static/life/life2.png') no-repeat center center;
+		//background: $life2 no-repeat center center;
+		background-size: cover;
 	}
 	.no_three {
-		// background: url('/static/scene3_fight/Rectangle 10.png') no-repeat center center;
-		background: $life3 no-repeat center center;
+		background: url('/static/life/life3.png') no-repeat center center;
+		//background: $life3 no-repeat center center;
+		background-size: cover;
 	}
 	.no_four {
-		// background: url('/static/scene3_fight/Rectangle 11.png') no-repeat center center;
-		background: $life4 no-repeat center center;
+		background: url('/static/life/life4.png') no-repeat center center;
+		//background: $life4 no-repeat center center;
+		background-size: cover;
+	}
+	.no_five {
+		background: url('/static/life/life5.png') no-repeat center center;
+		//background: $life4 no-repeat center center;
+		background-size: cover;
+	}
+	.no_six {
+		background: url('/static/life/life6.png') no-repeat center center;
+		//background: $life4 no-repeat center center;
+		background-size: cover;
+	}
+	.no_seven {
+		background: url('/static/life/life7.png') no-repeat center center;
+		//background: $life4 no-repeat center center;
+		background-size: cover;
+	}	
+	.no_eight {
+		background: url('/static/life/life8.png') no-repeat center center;
+		//background: $life4 no-repeat center center;
+		background-size: cover;
+	}
+	.no_nine {
+		background: url('/static/life/life9.png') no-repeat center center;
+		//background: $life4 no-repeat center center;
+		background-size: cover;
 	}
 	/*第三部分*/
 	.page_btn {
-		width: 108px;
-		height: 46px;
-		background: url('~@/static/scene3_fight/下一页框.png') no-repeat center center;
-		border-radius: 15px;
+		width: 216rpx;
+		height: 92rpx;
+		background: url('~@/static/image/index_2.png') no-repeat center center;
+		background-size: 80% 80%;
 		color: #FFFFFF;
-		line-height: 46px;
+		line-height: 92rpx;
 		// font-family: 'Inter';
 		font-style: italic;
 		font-weight: 900;
-		font-size: 20px;
+		font-size: 40rpx;
+		margin-top: 20rpx;
 		grid-area: page_btn;
 	}
 	.select_box{
 		height: 100%;
 		display: flex;
 		flex-direction: row;
-		justify-content: space-between;
+		justify-content: space-around;
 		grid-area: select_box;
 		background-size: cover;
-		min-height: 100%;
 	}
 	.num_1 {
-		background: $life5 no-repeat center center;
+		background: url('/static/life/life1.png') no-repeat center center;
+		background-size: 100% 100%;
 	}
 	.num_2 {
-		background: $life6 no-repeat center center;
+		background: url('/static/life/life2.png') no-repeat center center;
+		background-size: 100% 100%;
 	}
 	.num_3 {
-		background: $life7 no-repeat center center;
+		background: url('/static/life/life3.png') no-repeat center center;
+		background-size: 100% 100%;
 	}
 	.num_4 {
-		background: $life8 no-repeat center center;
+		background: url('/static/life/life4.png') no-repeat center center;
+		background-size: 100% 100%;
+	}
+	.num_5 {
+		background: url('/static/life/life5.png') no-repeat center center;
+		background-size: 100% 100%;
+	}
+	.num_6 {
+		background: url('/static/life/life6.png') no-repeat center center;
+		background-size: 100% 100%;
+	}
+	.num_7 {
+		background: url('/static/life/life7.png') no-repeat center center;
+		background-size: 100% 100%;
+	}
+	.num_8 {
+		background: url('/static/life/life8.png') no-repeat center center;
+		background-size: 100% 100%;
+	}
+	.num_9 {
+		background: url('/static/life/life9.png') no-repeat center center;
+		background-size: 100% 100%;
 	}
 	.change_btn {
-		width: 144px;
-		height: 65px;
-		background: url('~@/static/scene3_fight/Rectangle 59.png') no-repeat center center;
-		border-radius: 25px;
+		width: 216rpx;
+		height: 92rpx;
+		background: url('~@/static/image/index_2.png') no-repeat center center;
+		background-size: 80% 80%;
 		color: #FFFFFF;
-		line-height: 65px;
+		line-height: 92rpx;
 		/* font-family: 'Inter'; */
 		font-style: italic;
 		font-weight: 900;
-		font-size: 30px;
+		font-size: 40rpx;
 		grid-area: change_btn;
 	}
 	.buttom_wrapper {
-		width: 382px;
+		width: 764rpx;
 		height: 90%;
 		display: grid;
 		grid-gap: 5%;
@@ -344,11 +556,88 @@
 			"change_btn . .";
 	}
 	.select_item {
-		width: 100px;
-		height: 100px;
+		width: 200rpx;
+		height: 200rpx;
 	}
 	.hoverButton {
 		opacity: 0.9;
 		transform: scale(0.95, 0.95);
+	}
+	.mask {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+		transition: all 0.8s;
+		opacity: 0;
+	}
+	.dialog-wrapper {
+		width: 80%;
+		height: 15%;
+		overflow: hidden;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border-radius: 20rpx;
+		background-color: #dfca98; 
+		box-shadow: 1px 1px 10px rgb(75, 72, 70);
+		display: flex;
+		flex-direction: column;
+		opacity: 0;
+		transition: all 0.8s;
+		.dialog {
+			width: 100%;
+			height: 65%;
+			text-align: center;
+			color: #514639;
+			font-size: 36rpx;
+			//background-color: black;
+		}
+		.bottom-wrapper {
+			display: flex;
+			width: 100%;
+			height: 35%;
+			.left-rev {
+				width: 50%;
+				height: 100%;
+				background-color: #78533b;
+				text-align: center;
+				color: #fdf5d9;
+				font-size: 36rpx;
+			}
+			.right-rev {
+				width: 50%;
+				height: 100%;
+				background-color: #87725a;
+				text-align: center;
+				color: #fdf5d9;
+				font-size: 36rpx;
+			}
+		}
+	}
+	@media screen and (min-width: 600px) {
+		.skill_box {
+			margin-top: 40rpx !important;
+		}
+		.skill_wrapper {
+			grid-template-columns: repeat(2, 240rpx) !important;
+			grid-template-rows: repeat(2, 160rpx) !important;
+		}
+		.buttom_wrapper {
+			grid-row-gap: 0% !important;
+		}
+	}
+	@media screen and (min-width: 1000px) {
+		.skill_wrapper {
+			grid-template-columns: repeat(2, 225rpx) !important;
+			grid-template-rows: repeat(2, 145rpx) !important;
+		}
+		.select_item {
+			width: 160rpx !important;
+			height: 160rpx !important;
+		}
 	}
 </style>

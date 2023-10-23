@@ -3,6 +3,7 @@ import App from './App'
 // #ifndef VUE3
 import Vue from 'vue'
 import 'lib-flexible/flexible.js'
+import Cookies from "js-cookie";
 Vue.config.productionTip = false
 App.mpType = 'app'
 

@@ -2,7 +2,17 @@
 	<view class="wrapper animate__animated animate__fadeIn">
 		<!--第一部分-->
 		<div class="one item">
-			<div class="text_box">{{ detail }}</div>
+			<div class="text_box">
+				<div class="first-line">
+					<text>请在以下随机选择4个战斗技巧吧！</text>
+				</div>
+				<div class="second-line">
+					<text>我们将在最后为您揭晓它们的具体内容</text>
+				</div>
+				<div class="third-line">
+					<text>选择自己喜欢的小巫师图片 ٩(๑´3｀๑)۶</text>
+				</div>
+			</div>
 		</div>
 		<!--第二部分-->
 		<div class="two item">
@@ -20,7 +30,7 @@
 		<div class="three item">
 			<div class="buttom_wrapper">
 				<button class="page_btn" @click="NextPage()" hover-class="hoverButton" hover-stay-time="100"
-				hover-start-time="0">下一页</button>
+				hover-start-time="0">{{ isAnimationDone ? "下一页" : "跳过动画" }}</button>
 				<div class="select_box">
 					<div class="select_item" :class="getP0, ani[0]" @click="select(0)" @longpress= "showText(0)"></div>
 					<div class="select_item" :class="getP1, ani[1]" @click="select(1)" @longpress= "showText(1)"></div>
@@ -30,6 +40,22 @@
 				hover-start-time="0" @click="changeSet()">换一组</button>
 			</div>
 		</div>
+		<view class="mask" v-if="showDialog"></view>
+		<view class="dialog-wrapper" v-if="showDialog">
+			<view class="dialog">
+				<text>选四个技巧再走啊！Ծ‸Ծ</text>
+			</view>
+			<view class="bottom-wrapper">
+				<view class="left-rev" hover-class="hoverButton" hover-stay-time="100"
+				hover-start-time="0" @click="closeDialog()">
+					<text>同意 (o´ω`o)و</text>
+				</view>
+				<view class="right-rev" hover-class="hoverButton" hover-stay-time="100"
+				hover-start-time="0" @click="closeDialog()">
+					<text>勉强同意 (╯▽╰)</text>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -50,9 +76,11 @@
 				numbers:[0,1,2,3],
 				curStatus: 0,
 				text: ['1','2','3','4'],
-				detail: '',
+				detail: '待放文案',
 				ani: ['','',''],
 				anim: ['','','',''],
+				showDialog: false,
+				isAnimationDone: false,
 				//canBeSelect: [1,1,1,1],
 			}
 		},
@@ -120,8 +148,25 @@
 		},
 		methods: {
 			NextPage () {
-					uni.navigateTo({
-						url: "/pages/SceneThree_2/SceneThree_2"
+				if (!this.isAnimationDone) {
+					let first = document.querySelector('.first-line');
+					let second =document.querySelector('.second-line');
+					let third = document.querySelector('.third-line');
+					first.style.transition = 'none';
+					second.style.transition = 'none';
+					third.style.transition = 'none';
+					first.style.opacity = 1;
+					second.style.opacity = 1;
+					third.style.opacity = 1;
+					this.isAnimationDone = true;
+					return;
+				}
+				if (this.curStatus != 4) { //为4的时候说明选满了
+					this.showDialog = true;
+					return;
+				}
+				uni.navigateTo({
+					url: "/pages/SceneThree_2/SceneThree_2"
 				})
 			},
 			//换一组
@@ -155,9 +200,9 @@
 			//选择图片
 			select(idx) {
 				if(this.curStatus < 4) {
-					let ID = this.judge(this.control2[idx])
-					ID++
-					this.control1[this.curStatus][0] = 0
+					let ID = this.judge(this.control2[idx]) //类似独热码，选出是1的那个索引
+					ID++ //加一表示第几个被选，从1开始
+					this.control1[this.curStatus][0] = 0 //索引0处表示是否该位置空闲
 					this.control1[this.curStatus][ID] = 1
 					this.curStatus++
 					//点击动画
@@ -169,10 +214,22 @@
 			},
 			//取消选择
 			del (idx) {
-				if(this.curStatus > 0 && idx == this.curStatus - 1) {
+				if(this.curStatus > 0) {
 					let ID = this.judge(this.control1[idx])
 					this.control1[idx][ID] = 0
 					this.control1[idx][0] = 1
+					if (idx != this.curStatus - 1) {
+						let tmp = idx;
+						while (tmp != this.curStatus - 1) {
+							tmp++;
+							let ID = this.judge(this.control1[tmp]);
+							this.control1[tmp][ID] = 0;
+							this.control1[tmp][0] = 1;
+							this.control1[idx][ID] = 1;
+							this.control1[idx][0] = 0;
+							idx++;
+						}
+					}
 					this.curStatus--
 					//点击动画
 					this.anim[idx] = 'animate__animated animate__headShake';
@@ -185,14 +242,66 @@
 			showText (idx) {
 				let ID = this.judge(this.control2[idx])
 				this.detail = this.text[ID]
+			},
+			closeDialog() {
+				let dialogWrapper = document.querySelector('.dialog-wrapper');
+				dialogWrapper.style.opacity = 0;
+				let mask = document.querySelector('.mask');
+				mask.style.opacity = 0;
+				setTimeout(() => {
+					this.showDialog = false;
+				}, 800);
+			}
+		},
+		mounted() {
+			let first = document.querySelector('.first-line');
+			let second =document.querySelector('.second-line');
+			let third = document.querySelector('.third-line');
+			setTimeout(() => {
+				first.style.opacity = 1;
+			}, 200);
+			setTimeout(() => {
+				second.style.opacity = 1;
+			}, 1400);
+			setTimeout(() => {
+				third.style.opacity = 1;
+			}, 2600);
+			setTimeout(() => {
+				this.isAnimationDone = true;
+			}, 3800);
+		},
+		watch: {
+			showDialog: {
+				handler(newval) {
+					if (newval) {
+						/*垂直居中文字*/
+						this.$nextTick(() => {
+							let dialogWrapper = document.querySelector('.dialog-wrapper');
+							let diaHei = dialogWrapper.clientHeight;
+							let dialogTop = document.querySelector('.dialog');
+							let dialogBotL = document.querySelector('.left-rev');
+							let dialogBotR = document.querySelector('.right-rev'); 
+							dialogTop.style.lineHeight = diaHei * 0.65 + 'px';
+							dialogBotL.style.lineHeight = diaHei * 0.35 + 'px';
+							dialogBotR.style.lineHeight = diaHei * 0.35 + 'px';
+							dialogWrapper.style.opacity = 1;
+							let mask = document.querySelector('.mask');
+							mask.style.opacity = 1;
+						})
+					}
+				}
 			}
 		}
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+	.unipage-body, html, body {
+		background-color: #c8b586;
+	}
 	/*第一层*/
     .wrapper {
+		overflow: hidden;
 		position: static;
 		display: grid;
 		grid-template-columns: 100%;
@@ -230,28 +339,42 @@
 	}
 	/*第一部分*/
 	.text_box {
-		width: 317px;
-		height: 132px;
-		border-radius: 20px;
+		width: 80%;
+		height: 200rpx;
+		top: 6%;
+		position: relative;
 		background: #87725A;
+		border-radius: 20px;
+		box-shadow: 1px 1px 10px rgb(75, 72, 70);
+		line-height: 200rpx;
+		text-align: center;
+		color: #fdf5d9;
+		font-size: 31rpx;
+		line-height: 49rpx;
+		.first-line {
+			margin-top: 20rpx;
+		}
+		.first-line, .second-line, .third-line {
+			opacity: 0;
+			transition: 1.7s all;
+		}
 	}
 	/*第二部分*/
 	.skill_box {
-		width: 382px;
-		height: 254px;
+		width: 95%;
+		height: 118%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		/* 背景部分 */
 		background: url('~@/static/SceneThree/IMG_3818 1.png') no-repeat center center;
-		background-size: cover;
-		min-height: 100%;
+		background-size: 100% 100%;
 	}
 	.skill_wrapper {
 		display: grid;
-		grid-gap: 20px;
-		grid-template-columns:repeat(2, 126px);
-		grid-template-rows: repeat(2,87px);
+		grid-gap: 20rpx;
+		grid-template-columns:repeat(2, 252rpx);
+		grid-template-rows: repeat(2,174rpx);
 	}
 	.skill_item {
 		background: #fff;
@@ -260,76 +383,85 @@
 		background-size: cover;
 		min-height: 100%;
 		position: relative;
+		left: 40rpx;
 	}
 	.defaultColor {
 		background: #fff;
 	}
 	.no_one {
-		/* background: url('/static/scene3_fight/Rectangle 8.png') no-repeat center center; */
-		background: $fight1 no-repeat center center;
+		background: url('/static/scene3_fight/Rectangle 8.png') no-repeat center center;
+		//background: $fight1 no-repeat center center;
+		background-size: cover;
 	}
 	.no_two {
-		// background: url('/static/scene3_fight/Rectangle 9.png') no-repeat center center;
-		background: $fight2 no-repeat center center;
+		background: url('/static/scene3_fight/Rectangle 9.png') no-repeat center center;
+		//background: $fight2 no-repeat center center;
+		background-size: cover;
 	}
 	.no_three {
-		// background: url('/static/scene3_fight/Rectangle 10.png') no-repeat center center;
-		background: $fight3 no-repeat center center;
+		background: url('/static/scene3_fight/Rectangle 10.png') no-repeat center center;
+		//background: $fight3 no-repeat center center;
+		background-size: cover;
 	}
 	.no_four {
-		// background: url('/static/scene3_fight/Rectangle 11.png') no-repeat center center;
-		background: $fight4 no-repeat center center;
+		background: url('/static/scene3_fight/Rectangle 11.png') no-repeat center center;
+		//background: $fight4 no-repeat center center;
+		background-size: cover;
 	}
 	/*第三部分*/
 	.page_btn {
-		width: 108px;
-		height: 46px;
-		background: url('~@/static/scene3_fight/下一页框.png') no-repeat center center;
-		border-radius: 15px;
+		width: 216rpx;
+		height: 92rpx;
+		background: url('~@/static/image/index_2.png') no-repeat center center;
+		background-size: 80% 80%;
 		color: #FFFFFF;
-		line-height: 46px;
+		line-height: 92rpx;
 		// font-family: 'Inter';
 		font-style: italic;
 		font-weight: 900;
-		font-size: 20px;
+		font-size: 40rpx;
+		margin-top: 20rpx;
 		grid-area: page_btn;
 	}
 	.select_box{
 		height: 100%;
 		display: flex;
 		flex-direction: row;
-		justify-content: space-between;
+		justify-content: space-around;
 		grid-area: select_box;
 		background-size: cover;
-		min-height: 100%;
 	}
 	.num_1 {
 		background: $fight5 no-repeat center center;
+		background-size: 100% 100%;
 	}
 	.num_2 {
 		background: $fight6 no-repeat center center;
+		background-size: 100% 100%;
 	}
 	.num_3 {
 		background: $fight7 no-repeat center center;
+		background-size: 100% 100%;
 	}
 	.num_4 {
 		background: $fight8 no-repeat center center;
+		background-size: 100% 100%;
 	}
 	.change_btn {
-		width: 144px;
-		height: 65px;
-		background: url('~@/static/scene3_fight/Rectangle 59.png') no-repeat center center;
-		border-radius: 25px;
+		width: 216rpx;
+		height: 92rpx;
+		background: url('~@/static/image/index_2.png') no-repeat center center;
+		background-size: 80% 80%;
 		color: #FFFFFF;
-		line-height: 65px;
+		line-height: 92rpx;
 		/* font-family: 'Inter'; */
 		font-style: italic;
 		font-weight: 900;
-		font-size: 30px;
+		font-size: 40rpx;
 		grid-area: change_btn;
 	}
 	.buttom_wrapper {
-		width: 382px;
+		width: 764rpx;
 		height: 90%;
 		display: grid;
 		grid-gap: 5%;
@@ -344,11 +476,88 @@
 			"change_btn . .";
 	}
 	.select_item {
-		width: 100px;
-		height: 100px;
+		width: 200rpx;
+		height: 200rpx;
 	}
 	.hoverButton {
 		opacity: 0.9;
 		transform: scale(0.95, 0.95);
+	}
+	.mask {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+		transition: all 0.8s;
+		opacity: 0;
+	}
+	.dialog-wrapper {
+		width: 80%;
+		height: 15%;
+		overflow: hidden;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border-radius: 20rpx;
+		background-color: #dfca98; 
+		box-shadow: 1px 1px 10px rgb(75, 72, 70);
+		display: flex;
+		flex-direction: column;
+		opacity: 0;
+		transition: all 0.8s;
+		.dialog {
+			width: 100%;
+			height: 65%;
+			text-align: center;
+			color: #514639;
+			font-size: 36rpx;
+			//background-color: black;
+		}
+		.bottom-wrapper {
+			display: flex;
+			width: 100%;
+			height: 35%;
+			.left-rev {
+				width: 50%;
+				height: 100%;
+				background-color: #78533b;
+				text-align: center;
+				color: #fdf5d9;
+				font-size: 36rpx;
+			}
+			.right-rev {
+				width: 50%;
+				height: 100%;
+				background-color: #87725a;
+				text-align: center;
+				color: #fdf5d9;
+				font-size: 36rpx;
+			}
+		}
+	}
+	@media screen and (min-width: 600px) {
+		.skill_box {
+			margin-top: 40rpx !important;
+		}
+		.skill_wrapper {
+			grid-template-columns: repeat(2, 240rpx) !important;
+			grid-template-rows: repeat(2, 160rpx) !important;
+		}
+		.buttom_wrapper {
+			grid-row-gap: 0% !important;
+		}
+	}
+	@media screen and (min-width: 1000px) {
+		.skill_wrapper {
+			grid-template-columns: repeat(2, 225rpx) !important;
+			grid-template-rows: repeat(2, 145rpx) !important;
+		}
+		.select_item {
+			width: 160rpx !important;
+			height: 160rpx !important;
+		}
 	}
 </style>
